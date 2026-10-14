@@ -1,0 +1,9 @@
+include LICENSE README.md
+recursive-include ribonet/data *
+# Test scripts are shipped; the test dataset (~40 MB) is only in the GitHub repository
+recursive-include tests *.py *.sh *.md
+recursive-include docs *.rst *.py *.txt *.png Makefile make.bat
+prune tests/data
+prune tests/test_output
+prune docs/_build
+global-exclude __pycache__ *.py[cod] .DS_Store

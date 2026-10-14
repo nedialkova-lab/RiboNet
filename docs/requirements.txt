@@ -1,0 +1,10 @@
+sphinx>=7
+sphinx-rtd-theme>=2
+# light dependencies imported at module level (the heavy ones are mocked in conf.py)
+numpy
+pandas
+matplotlib
+pyarrow
+reportlab
+pillow
+beautifulsoup4
