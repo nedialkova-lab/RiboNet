@@ -34,6 +34,7 @@ Project directory structure
    │   └── sample_file.txt
    ├── training/
    │   ├── ribonet.pt
+   │   ├── split.tsv
    │   ├── model_prediction.parquet
    │   ├── model_trainingset.parquet
    │   └── training.pdf
@@ -210,6 +211,13 @@ config_ribonet.json
 **Format:** JSON
 
 **Description:** Saved in the project directory (not in ``training/``). Configuration file containing all parameters used for training and interpretation. Useful for reproducibility and record-keeping.
+
+split.tsv
+~~~~~~~~~
+
+**Format:** Tab-separated
+
+**Description:** Assignment of each transcript to the ``train``, ``val`` or ``test`` set, drawn at random when the model is trained. It is reused when ``ribonet train`` is run again on the same project.
 
 model_prediction.parquet
 ~~~~~~~~~~~~~~~~~~~~~~~~

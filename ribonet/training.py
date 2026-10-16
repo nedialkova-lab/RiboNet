@@ -389,8 +389,7 @@ class RiboTraining():
         num_train = int(args["split"] * data_size)
         num_val = (data_size - num_train) // 2
 
-        indices = np.random.default_rng(seed=42).permutation(data_size)
-        training_idx, test_idx, val_idx = np.split(indices, [num_train, num_train + num_val])
+        training_idx, val_idx, test_idx = self._get_split(num_train, num_val)
 
         x_train, y_train = x_c.iloc[training_idx], y_mat[training_idx,:,:,:]
         x_val, y_val = x_c.iloc[val_idx], y_mat[val_idx,:,:,:]
@@ -492,6 +491,54 @@ class RiboTraining():
         self.loss_fn = partial(total_bpnet_loss, alpha=self.alpha, beta=self.beta,
                                ablate_utr5=self.ablate_utr5, ablate_utr3=self.ablate_utr3)
     
+
+    def _get_split(self, num_train, num_val):
+        '''
+        Split the genes into training, validation and test sets.
+
+        A new training draws a random split and saves it to ``training/split.tsv``. If a
+        trained model already exists, its own split is used, so that its saved predictions
+        and evaluation stay consistent: it is read from ``split.tsv`` or, for models without
+        that file, reconstructed from the saved predictions (test genes from
+        ``model_prediction.parquet``, training genes from ``model_trainingset.parquet``,
+        validation genes: the rest).
+
+        Returns
+        -------
+        tuple of np.ndarray
+            Row positions (in ``self.x_c``) of the training, validation and test genes.
+        '''
+        genes = self.x_c.index
+        split_file = os.path.join(self.training, "split.tsv")
+        pred_file = os.path.join(self.training, "model_prediction.parquet")
+        train_file = os.path.join(self.training, "model_trainingset.parquet")
+        trained = os.path.isfile(os.path.join(self.training, "ribonet.pt")) and os.path.isfile(pred_file)
+
+        if trained:
+            if os.path.isfile(split_file):
+                saved = pd.read_csv(split_file, sep="\t", index_col=0, dtype={"gene": str})["set"]
+                sets = {k: list(saved.index[saved == k]) for k in ("train", "val", "test")}
+            elif os.path.isfile(train_file):
+                test = list(pd.read_parquet(pred_file, columns=[]).index)
+                train = list(pd.read_parquet(train_file, columns=[]).index)
+                val = list(genes.difference(test).difference(train))
+                sets = {"train": train, "val": val, "test": test}
+            else:
+                sets = None
+            if sets is not None:
+                positions = {k: genes.get_indexer(v) for k, v in sets.items()}
+                if all((p >= 0).all() for p in positions.values()) and sum(len(p) for p in positions.values()) == len(genes):
+                    log.info("Using the train/validation/test split of the existing trained model.")
+                    return positions["train"], positions["val"], positions["test"]
+                log.warning("The genes of the existing trained model do not match the preprocessed data.")
+
+        indices = np.random.default_rng().permutation(len(genes))
+        training_idx, test_idx, val_idx = np.split(indices, [num_train, num_train + num_val])
+        os.makedirs(self.training, exist_ok=True)
+        pd.DataFrame({"gene": list(genes[training_idx]) + list(genes[val_idx]) + list(genes[test_idx]),
+                      "set": ["train"] * len(training_idx) + ["val"] * len(val_idx) + ["test"] * len(test_idx)}
+                     ).to_csv(split_file, sep="\t", index=False)
+        return training_idx, val_idx, test_idx
 
     def run_training(self):
         '''

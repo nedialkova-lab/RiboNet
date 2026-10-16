@@ -232,6 +232,8 @@ Loss weights for count and distribution prediction. See the loss function sectio
 
 Fraction of transcripts to use for training. The remaining transcripts are split into validation and test sets (15% each). Adjust to use more or less data for training.
 
+The transcripts are assigned randomly, and the assignment is saved to ``training/split.tsv``. Running ``ribonet train`` again on a project with a trained model does not retrain and keeps its saved split, so that the stored predictions and the evaluation stay consistent. To train a new model with a new random split, use a new project directory.
+
 .. code-block:: bash
 
    ribonet train --split 0.8 ...
