@@ -176,7 +176,18 @@ https://www.cs.cit.tum.de/cmm/home/
 
 If you use RiboNet in your research, please cite:
 
-*Manuscript in preparation*
+> Hernandez-Alias X, Kaya S, Doychev K, Schroeder F, Hermann B, Madran B, Majidian S, Gagneur J, Nedialkova DD (2026). Metabolic transitions reprogram translation through sequence-dependent regulation. *bioRxiv*. doi: [10.64898/2026.11.15.766763](https://doi.org/10.64898/2026.11.15.766763)
+
+```bibtex
+@article{HernandezAlias2026,
+  title   = {Metabolic transitions reprogram translation through sequence-dependent regulation},
+  author  = {Hernandez-Alias, X. and Kaya, S. and Doychev, K. and Schroeder, F. and Hermann, B. and Madran, B. and Majidian, S. and Gagneur, J. and Nedialkova, D. D.},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.64898/2026.11.15.766763},
+  url     = {https://doi.org/10.64898/2026.11.15.766763}
+}
+```
 
 ## License
 

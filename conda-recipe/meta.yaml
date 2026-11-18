@@ -84,5 +84,7 @@ about:
   dev_url: https://github.com/nedialkova-lab/RiboNet
 
 extra:
+  identifiers:
+    - doi:10.64898/2026.11.15.766763
   recipe-maintainers:
     - hexavier

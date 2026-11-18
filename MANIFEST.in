@@ -1,4 +1,4 @@
-include LICENSE README.md
+include LICENSE README.md CITATION.cff
 recursive-include ribonet/data *
 # Test scripts are shipped; the test dataset (~40 MB) is only in the GitHub repository
 recursive-include tests *.py *.sh *.md

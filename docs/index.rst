@@ -29,6 +29,15 @@ Key Features
 - Discover regulatory motifs using `TF-MoDISco <https://github.com/kundajelab/tfmodisco>`__
 - Generate comprehensive reports with visualizations
 
+Citation
+--------
+
+If you use RiboNet in your research, please cite:
+
+   Hernandez-Alias X, Kaya S, Doychev K, Schroeder F, Hermann B, Madran B, Majidian S, Gagneur J, Nedialkova DD (2026). Metabolic transitions reprogram translation through sequence-dependent regulation. *bioRxiv*. doi: `10.64898/2026.11.15.766763 <https://doi.org/10.64898/2026.11.15.766763>`__
+
+A BibTeX entry is available in the :doc:`FAQ <faq>`.
+
 .. toctree::
    :maxdepth: 2
    :caption: Getting Started

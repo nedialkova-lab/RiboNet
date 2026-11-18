@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use RiboNet in your research, please cite the publication below."
+title: "RiboNet: deep learning analysis toolkit for ribosome profiling"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/nedialkova-lab/RiboNet"
+authors:
+  - family-names: Hernandez-Alias
+    given-names: Xavier
+preferred-citation:
+  type: article
+  title: "Metabolic transitions reprogram translation through sequence-dependent regulation"
+  journal: bioRxiv
+  year: 2026
+  doi: 10.64898/2026.11.15.766763
+  url: "https://doi.org/10.64898/2026.11.15.766763"
+  authors:
+    - family-names: Hernandez-Alias
+      given-names: X.
+    - family-names: Kaya
+      given-names: S.
+    - family-names: Doychev
+      given-names: K.
+    - family-names: Schroeder
+      given-names: F.
+    - family-names: Hermann
+      given-names: B.
+    - family-names: Madran
+      given-names: B.
+    - family-names: Majidian
+      given-names: S.
+    - family-names: Gagneur
+      given-names: J.
+    - family-names: Nedialkova
+      given-names: D. D.
