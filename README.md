@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/nedialkova-lab/RiboNet/main/docs/img/ribonet.png" width="450" height="450">
+	<img src="https://raw.githubusercontent.com/nedialkova-lab/RiboNet/main/docs/img/ribonet.png" width="450" alt="RiboNet logo">
 </p>
 
 # RiboNet
